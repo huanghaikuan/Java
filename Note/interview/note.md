@@ -9,9 +9,31 @@
 #### 问题汇总
 
 ##### 基础
-- StringBuffer和StringBuilder区别？string buffer初始容量是多少，如何做扩容？
+- String、StringBuffer和StringBuilder区别？stringBuffer初始容量是多少，如何做扩容？
+    - String是字符串首选类型，内容不允许修改：我们所看到的字符串已经修改已经不是同一个对象，此时已经产生垃圾
+    - StringBuffer线程安全的，用了synchronized申明，内容允许修改
+    - StringBuilder是非线程安全的，内容允许修改
+    - StringBuffer容量问题：
+        - 无参构造初始化容量为16
+        - 有参构造初始化容量为初始化字符串长度+16
+        - value.length() > capacity: (value.length << 1) + 2
+    - 三者的使用场景：
+        - String：适用于少量的字符串操作的情况
+        - StringBuilder：适用于单线程下在字符缓冲区进行大量操作的情况
+        - StringBuffer：适用多线程下在字符缓冲区进行大量操作的情况
 
+- JAVA基础考察 答  String，StringBuffer的区别？    
+    - （简单思考：能否有办法将String变成可更改内容）
+    - String有两个常量池：静态常量池、运行时常量池
+    - String有两种实例化方式：1.直接赋值 2.构造方法
+    - StringBuffer是线程安全的，可以修改内容
+    - String与StringBuffer可以相互转换，StringBuffer->String用append();String->StringBuffer用toString
+    - StringBuffer可以在指定索引位置追加或删除内容和内容反转
+    
 - Try catch如果找到了一个匹配的catch，finally还会执行吗？
+    - 会执行，无论是否匹配上都要执行finally
+    - 即使try catch中有return仍然要执行finally
+    - finally可以用于对文件操作或者网络使用的关闭
 
 - Map如何遍历？那种方式效率最好？
 
@@ -38,21 +60,6 @@
 - 描述几个数据结构和排序算法？
 
 - 聊几个你熟悉的设计模式？
-
-##### 线程 
-- sleep()和  wait()  有什么区别？
-
--run()和start()有什么区别？
-    - start()会调用start0()，此方法会根据不同的操作系统
-
-
-- Thread local是什么？是否用到过，注意事项是什么？
-
-- 一个线程有几个状态？请描叙一下一个线程的状态图
-
-- 什么是并发？在单JVM下如何控制并发，在多JVM下如果控制并发？
-
-- CountDownLatch: http://www.importnew.com/21889.html
 
 ##### jvm：
 - jvm加载class的过程？
@@ -153,14 +160,6 @@
 - 通过什么工具查找热点耗时代码？
 - 如何监控代码的执行效率？又是如何来找到瓶颈的？
 
-##### 4. 软性问题  
-- 你的优缺点？核心竞争力？
-- 你的兴趣爱好？
-- 你的学习方式？
-- 你离职原因？来支付宝原因？
-- 未来2-3年的职业规划？
-- 有什么问题需要问我的？
-
 ##### 基础题目
 - Java线程的状态 
 - 进程和线程的区别，进程间如何通讯，线程间如何通讯 
@@ -255,3 +254,11 @@
 - 职业规划是什么？短期，长期目标是什么 
 - 团队的规划是什么 
 - 能介绍下从工作到现在自己的成长在那里
+
+##### 软性问题  
+- 你的优缺点？核心竞争力？
+- 你的兴趣爱好？
+- 你的学习方式？
+- 你离职原因？来支付宝原因？
+- 未来2-3年的职业规划？
+- 有什么问题需要问我的？
